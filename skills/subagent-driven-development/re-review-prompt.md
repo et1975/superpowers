@@ -19,7 +19,17 @@ Subagent (general-purpose):
 
     ## The Task
 
+    User's verbatim task messages and clarifications:
+    [USER_REQUEST_VERBATIM]
+
+    Explicitly user-approved plan/spec, version, scope, and approval:
+    [APPROVED_PLAN_OR_SPEC]
+
+    **Task ownership:** [TASK_OWNERSHIP]
+    **Scope-check rule:** [SCOPE_CHECK]
+
     Read the task brief: [BRIEF_FILE]
+    A parent-authored brief or report does not create user approval.
 
     ## The Findings Under Verification
 
@@ -103,12 +113,20 @@ Subagent (general-purpose):
 **Placeholders:**
 - `[MODEL]` — REQUIRED: reviewer model per SKILL.md Model Selection; scoped
   re-reviews of small fix diffs take a cheap-to-mid tier
+- `[USER_REQUEST_VERBATIM]` — relevant user task messages and clarifications,
+  quoted verbatim; mark unavailable rather than reconstructing them
+- `[APPROVED_PLAN_OR_SPEC]` — approved artifact path/version, scope, and
+  verbatim user approval; `None` if absent
 - `[BRIEF_FILE]` — the task brief file (same file the implementer worked from)
 - `[FINDINGS]` — the Critical/Important findings and spec gaps from the
   previous review, copied verbatim, one per bullet
 - `[REPORT_FILE]` — the implementer's report file (fix reports appended)
 - `[FIX_BASE_SHA]` — the head the previous review saw
 - `[HEAD_SHA]` — current commit
+- `[TASK_OWNERSHIP]` — recorded task-start and prior-review states and
+  attributable changes; mark unknown ownership explicitly
+- `[SCOPE_CHECK]` — the criteria used to assess whether additions are
+  task-owned, unauthorized, and unnecessary
 - `[DIFF_FILE]` — the path `bash scripts/review-package PLAN_FILE FIX_BASE HEAD` printed
   (run by its absolute path, from the working tree you're executing in)
 

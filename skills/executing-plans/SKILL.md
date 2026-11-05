@@ -299,12 +299,15 @@ because the spec was silent has graded the spec, not the effect. Then:
   decision about a conflict, not a note that you declined a polish suggestion.
 
 Fix Critical, Important, and confirmed scope findings yourself in ONE
-pass. Verify each fix by TDD: write the test that reproduces the finding,
-watch it fail, make it pass, then run the whole suite. Record each as
-`Final: fixed <finding> — <test name> RED→GREEN, suite <N>/<N>`. A fix
-without a test that failed first is not verified; a suite that is not
-green after the pass means the pass is not over. Do not dispatch a
-re-review.
+pass. For behavior changes, verify each fix by TDD: write the test that
+reproduces the finding, watch it fail, make it pass, then run the whole suite.
+For a confirmed scope removal with no behavior to reproduce, verify the
+removal with the whole suite and a reference or compiler check; add a
+failing-first regression test when the removal could regress observable
+behavior or compatibility. Record the evidence:
+`Final: fixed <finding> — <test and/or reference/compiler check>, suite
+<N>/<N>`. A suite that is not green after the pass means the pass is not over.
+Do not dispatch a re-review.
 If a confirmed scope addition remains unresolved, report the work incomplete.
 
 A finding you decide not to fix is a ruling — `Final: Ruling: <finding> —

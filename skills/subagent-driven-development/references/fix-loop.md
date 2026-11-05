@@ -21,14 +21,20 @@ Everything else enters the loop. A fix round is one fix dispatch plus one
 scoped re-review. Five rounds maximum per task:
 
 **Rounds 1-3 — resume the original implementer.** Send it the open findings
-verbatim. Its context is intact: it knows the task, the code, and its own
-choices. If your harness cannot send another message to a live subagent,
-dispatch a fresh implementer carrying the brief path, the report-file path,
-and the findings — the report file is the persistent memory either way.
+verbatim and include or reference the original provenance and ownership
+context in the fix dispatch: the user task messages, approved artifact and
+approval, scope, task ownership, and scope-check rule. Retained agent context
+does not replace this handoff. If the harness cannot resume the agent, dispatch
+a fresh implementer carrying the brief path, the report-file path,
+the verbatim user task messages, approved artifact and approval provenance,
+scope, task ownership, scope-check rule, and findings — the report file is
+the persistent memory either way.
 
 **Rounds 4-5 — dispatch a fresh implementer on a more capable model** (per
-SKILL.md's Model Selection), with the brief path, the report-file path, the open
-findings, and this framing: "A prior implementer attempted this task
+SKILL.md's Model Selection), with the brief path, the report-file path, the
+open findings, the verbatim user task messages, approved artifact and approval
+provenance, scope, task ownership, and scope-check rule, plus this framing:
+"A prior implementer attempted this task
 [N] times; you own it now. Read the report file for what was tried." A loop
 that survives three resumes usually means the implementer cannot see its
 own problem — fresh eyes and a capability bump in one move.
@@ -44,7 +50,9 @@ whole suite.
 **The re-review is scoped.** Run `bash scripts/review-package PLAN_FILE FIX_BASE HEAD`
 by its absolute path, from the working tree you're executing in, where FIX_BASE is the head the previous review saw, and dispatch
 [re-review-prompt.md](../re-review-prompt.md) with the findings list, the
-brief, the report file, and the printed diff path. The re-reviewer verdicts
+brief, the report file, the printed diff path, verbatim user task messages,
+approved artifact and approval provenance, scope, task ownership, and
+scope-check rule. The re-reviewer verdicts
 each finding ADDRESSED or NOT ADDRESSED and flags new breakage in the fix
 diff only. New Critical/Important breakage in the fix diff joins the open
 findings list. Out-of-scope observations go to the ledger as deferred
